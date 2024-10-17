@@ -4,14 +4,14 @@ import {
   show as showTodoController, 
   create as createTodoController, 
   edit as editTodoController,
-  list as listTodoController,
+  count as countCompletedTasks,
 } from '@/controllers/todo.controller'
 
 const routes = Router();
 
-routes.get("/todo/list", listTodoController);
+routes.get("/todo/count", countCompletedTasks);
 
-routes.get("/todo/show/:id", showTodoController);
+routes.get("/todo/show", showTodoController);
 
 routes.put("/todo/edit/:id/:status", editTodoController);
 
