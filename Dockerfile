@@ -1,6 +1,6 @@
 FROM node:20-alpine
 
-RUN apk add --no-cache python g++ make
+#RUN apk add --no-cache python g++ make
 
 WORKDIR /app
 COPY . .
