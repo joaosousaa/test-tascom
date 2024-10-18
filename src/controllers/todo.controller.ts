@@ -4,7 +4,6 @@ import { createRequestType, putParamsType } from '@/commons/types/todo.type'
 
 const prisma = new PrismaClient();
 
-
 // contar tarefas concluídas
 export async function count(req: Request, res: Response) {
   try {
@@ -14,13 +13,16 @@ export async function count(req: Request, res: Response) {
       }
     });
 
+    if (!completedTasks || completedTasks === 0) {
+      return res.status(200).json({ message: 'Nenhuma tarefa encontrada', data: 0 });
+    }
+
     return res.status(200).json({ message: 'Contagem de tarefas concluídas', data: completedTasks });
 
   } catch (error: any) {
     return res.status(500).json({ message: { error: error.message } });
   }
 }
-
 
 // listar tarefas com o status created
 export async function show(req: Request, res: Response) {
@@ -31,7 +33,7 @@ export async function show(req: Request, res: Response) {
       }
     });
     if (!listTodo || listTodo.length === 0) {
-      return res.status(404).json({ message: 'Nenhuma tarefa com status "created" encontrada' });
+      return res.status(200).json({ message: 'Nenhuma tarefa com status "created" encontrada' });
     }
 
     return res.status(200).json({ message: 'Tarefas encontradas', data: listTodo });

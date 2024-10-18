@@ -7,7 +7,3 @@ export type putParamsType = {
   status: 'CANCELED' | 'COMPLETED'
   id: string;
 }
-
-export type showParamsType = {
-  id: string;
-}
